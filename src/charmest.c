@@ -1,10 +1,10 @@
 /*
  */
-#
 #include "CUnit/Basic.h"
 #include "equalTo.h"
 #include "assert.h"
 #include "not.h"
+#include "memwatch.h"
 
 
 void test(void)
@@ -16,6 +16,8 @@ void test(void)
 	int int2 = 23;
 
 	assertThat( string1, not(equalTo(string1)));
+	assertThat( string1, not(equalTo(string1)));
+
 	assertThat( string1, not(equalTo(string2)));
 	assertThat( string1, equalTo(string1));
 	assertThat( 11, equalTo(11));
@@ -23,7 +25,7 @@ void test(void)
 
 	assertThat( &int2, equalTo(&int1));
 	assertThat( &int1, equalTo(&int1));
-	assertThat( &int2, not(equalTo(&int1)));
+		assertThat( &int2, not(equalTo(&int1)));
 }
 
 int main()

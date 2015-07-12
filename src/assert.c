@@ -12,27 +12,24 @@
 #include "string.h"
 #include "CUnit/Basic.h"
 
-void assertString(){
-	char errorMessageExpected[] = "Assert Failed. expected: ";
-	char errorMessageActual[] = " but was: ";
-	char* combinedMessage = calloc(strlen(errorMessageExpected) + strlen(errorMessageActual) + strlen(actualString) + strlen(desiredString), 1);
-	sprintf(combinedMessage, "%s%s%s%s",errorMessageExpected, actualString, errorMessageActual, desiredString);
-	CU_assertImplementation(result, __LINE__, combinedMessage, __FILE__, "", CU_FALSE);
-	free(combinedMessage);
+char errorMessageExpected[] = "Assert Failed. expected: ";
+char errorMessageActual[] = " but was: ";
+
+void assertString(char* file, unsigned int line){
+	char* message = buildMessageFromList();
+	CU_assertImplementation(result, line, message, file, "", CU_FALSE);
+	free(message);
+	clearMessageList();
 }
-void assertInteger(){
-	char errorMessageExpected[] = "Assert Failed. expected: ";
-	char errorMessageActual[] = " but was: ";
-	char* combinedMessage = calloc(strlen(errorMessageExpected) + strlen(errorMessageActual) + 100 + 100, 1);
-	sprintf(combinedMessage, "%s%d%s%d",errorMessageExpected, actualInt, errorMessageActual, desiredInt);
-	CU_assertImplementation(result, __LINE__, combinedMessage, __FILE__, "", CU_FALSE);
-	free(combinedMessage);
+void assertInteger(char* file, unsigned int line){
+	char* message = buildMessageFromList();
+	CU_assertImplementation(result, line, message, file, "", CU_FALSE);
+	free(message);
+	clearMessageList();
 }
-void assertPointer(){
-	char errorMessageExpected[] = "Assert Failed. expected: ";
-	char errorMessageActual[] = " but was: ";
-	char* combinedMessage = calloc(strlen(errorMessageExpected) + strlen(errorMessageActual) + 10 + 10, 1);
-	sprintf(combinedMessage, "%s%p%s%p",errorMessageExpected, actualPointer, errorMessageActual, desiredPointer);
-	CU_assertImplementation(result, __LINE__, combinedMessage, __FILE__, "", CU_FALSE);
-	free(combinedMessage);
+void assertPointer(char* file, unsigned int line){
+	char* message = buildMessageFromList();
+	CU_assertImplementation(result, line, message, file, "", CU_FALSE);
+	free(message);
+	clearMessageList();
 }

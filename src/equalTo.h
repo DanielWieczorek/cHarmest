@@ -8,6 +8,7 @@
 #ifndef EQUALTO_H_
 #define EQUALTO_H_
 #include "global.h"
+#include "message.h"
 
 #define equalTo(X) _Generic((X), \
         char*: stringequalTo, \

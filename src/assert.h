@@ -7,7 +7,7 @@
 
 #ifndef ASSERTTHAT_H_
 #define ASSERTTHAT_H_
-
+#include "message.h"
 
 #define assertThat(input, matcher){\
 	storeActual(input);\
@@ -25,7 +25,7 @@
                          char*: assertString, \
                          int: assertInteger, \
                          default: assertPointer \
-                         )()
+                         )(__FILE__,__LINE__)
 
 void assertString();
 void assertInteger();
