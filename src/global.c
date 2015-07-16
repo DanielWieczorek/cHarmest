@@ -6,8 +6,6 @@
  */
 #include "global.h"
 
-
-
  bool result;
  char* prefix;
 

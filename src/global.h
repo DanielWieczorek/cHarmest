@@ -27,7 +27,6 @@ extern char* desiredString;
 extern int desiredInt;
 extern void* desiredPointer;
 
-
 #define storeActual(X) _Generic((X),                \
                          char*: storeActualString, \
                          int: storeActualInteger, \
