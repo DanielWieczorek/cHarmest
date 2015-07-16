@@ -12,20 +12,11 @@
 #define assertThat(input, matcher){\
 	storeActual(input);\
 	matcher;\
-	charmestAssert(input);\
+	charmestAssert(__FILE__,__LINE__);\
 }
 
-#define assertThat(input, matcher){\
-	storeActual(input);\
-	matcher;\
-	charmestAssert(input);\
-}
 
-#define charmestAssert(X) _Generic((X),                \
-                         char*: assertString, \
-                         int: assertInteger, \
-                         default: assertPointer \
-                         )(__FILE__,__LINE__)
+void charmestAssert(char* file, unsigned int line);
 
 void assertString();
 void assertInteger();
