@@ -12,6 +12,7 @@
 
 #define equalTo(X) _Generic((X), \
         char*: stringequalTo, \
+        char [sizeof(X)]: stringequalTo, \
         int: integerequalTo, \
         default: pointerequalTo \
         )(X)

@@ -10,6 +10,9 @@ void test(void) {
 	char* string1 = "foo";
 	char* string2 = "bar";
 
+	char string3[] = "foo";
+	char string4[] = "bar";
+
 	int int1 = 23;
 	int int2 = 23;
 
@@ -24,6 +27,12 @@ void test(void) {
 	assertThat( &int2, equalTo(&int1));
 	assertThat( &int1, equalTo(&int1));
 	assertThat( int2, not(equalTo(&int1)));
+
+	assertThat( string3, not(equalTo(string3)));
+	assertThat( string3, not(equalTo(string3)));
+
+	assertThat( string3, not(equalTo(string4)));
+	assertThat( string3, equalTo(string3));
 }
 
 int main() {
