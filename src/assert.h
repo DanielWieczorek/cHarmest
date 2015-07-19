@@ -10,6 +10,7 @@
 #include "message.h"
 
 #define assertThat(input, matcher){\
+	clearValues();\
 	storeActual(input);\
 	matcher;\
 	charmestAssert(__FILE__,__LINE__);\

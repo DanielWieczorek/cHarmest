@@ -7,7 +7,6 @@
 #include "global.h"
 
  bool result;
- char* prefix;
 
  char* actualString;
  int actualInt;
@@ -40,4 +39,14 @@ void storeActualPointer(void* input){
 	actualPointer = input;
 }
 
+void clearValues(){
+	result = false;
 
+	actualString = "";
+	actualInt = 0;
+	actualPointer = NULL;
+
+	desiredString = "";
+	desiredInt = 0;
+	desiredPointer = NULL;
+}

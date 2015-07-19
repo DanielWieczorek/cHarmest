@@ -29,12 +29,14 @@ extern void* desiredPointer;
 
 #define storeActual(X) _Generic((X),                \
                          char*: storeActualString, \
+                         char [sizeof(X)]: storeActualString,\
                          int: storeActualInteger, \
                          default: storeActualPointer \
                          )(X)
 
 #define storeDesired(X) _Generic((X),                \
                          char*: storeDesiredString, \
+                         char [sizeof(X)]: storeDesiredString,\
                          int: storeDesiredInteger, \
                          default: storeDesiredPointer \
                          )(X)
@@ -44,5 +46,5 @@ void storeDesiredPointer(void* input);
 void storeActualString(char* input);
 void storeActualInteger(int input);
 void storeActualPointer(void* input);
-
+void clearValues(void);
 #endif /* GLOBAL_H_ */

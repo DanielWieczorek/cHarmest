@@ -6,7 +6,6 @@
 #include "not.h"
 #include "memwatch.h"
 
-void test(void) {
 	char* string1 = "foo";
 	char* string2 = "bar";
 
@@ -16,24 +15,25 @@ void test(void) {
 	int int1 = 23;
 	int int2 = 23;
 
-	assertThat( string1, not(equalTo(string1)));
-	assertThat( string1, not(equalTo(string1)));
+void testEqualToString(void) {
+	assertThat(string1, equalTo(string1));
+	assertThat(string1, not(equalTo(string2)))
 
-	assertThat( string1, not(equalTo(string2)));
-	assertThat( string1, equalTo(string1));
-	assertThat( 11, equalTo(11));
-	assertThat( 11, equalTo(13));
-
-	assertThat( &int2, equalTo(&int1));
-	assertThat( &int1, equalTo(&int1));
-	assertThat( int2, not(equalTo(&int1)));
-
-	assertThat( string3, not(equalTo(string3)));
-	assertThat( string3, not(equalTo(string3)));
-
-	assertThat( string3, not(equalTo(string4)));
-	assertThat( string3, equalTo(string3));
+	assertThat(string3, equalTo(string3));
+	assertThat(string3, not(equalTo(string4)));
 }
+
+void testEqualToInt(void) {
+	assertThat(11, equalTo(11));
+	assertThat(11, not(equalTo(13)));
+}
+
+void testEqualToPointer(void) {
+	assertThat( &int2, not(equalTo(&int1)));
+	assertThat( &int1, equalTo(&int1));
+	assertThat(int2, not(equalTo(&int1)));
+}
+
 
 int main() {
 	CU_pSuite pSuite = NULL;
@@ -48,10 +48,9 @@ int main() {
 		CU_cleanup_registry();
 		return CU_get_error();
 	}
-
-	/* add the tests to the suite */
-	/* NOTE - ORDER IS IMPORTANT - MUST TEST fread() AFTER fprintf() */
-	if (NULL == CU_add_test(pSuite, "test()", test)) {
+	if (NULL == CU_add_test(pSuite, "test of equalTo() with char* and char[]", testEqualToString)
+			|| NULL == CU_add_test(pSuite, "test of equalTo() with integer values", testEqualToInt)
+			|| NULL == CU_add_test(pSuite, "test of equalTo() with pointers", testEqualToPointer)) {
 		CU_cleanup_registry();
 		return CU_get_error();
 	}
